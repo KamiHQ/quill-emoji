@@ -60,6 +60,7 @@ function fn_updateRange(quill){
 }
 
 function fn_showEmojiPalatte(quill) {
+<<<<<<< HEAD
   let ele_emoji_area = document.createElement('div');
   let toolbar_container = document.querySelector('.ql-toolbar');
   /* Kami: edit start */
@@ -72,7 +73,6 @@ function fn_showEmojiPalatte(quill) {
 
     quill.container.appendChild(ele_emoji_area);
     let paletteMaxPos = atSignBounds.left + 250;//palette max width is 250
-    ele_emoji_area.id = 'emoji-palette';
     ele_emoji_area.style.top = 10 + atSignBounds.top + atSignBounds.height + "px";
     if (paletteMaxPos > quill.container.offsetWidth) {
       ele_emoji_area.style.left = (atSignBounds.left - 250)+ "px";
@@ -81,6 +81,7 @@ function fn_showEmojiPalatte(quill) {
       ele_emoji_area.style.left = atSignBounds.left + "px";
     }
   }
+  ele_emoji_area.id = 'emoji-palette';
   /* Kami: edit end */
 
   let tabToolbar = document.createElement('div');
