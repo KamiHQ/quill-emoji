@@ -60,7 +60,6 @@ function fn_updateRange(quill){
 }
 
 function fn_showEmojiPalatte(quill) {
-<<<<<<< HEAD
   let ele_emoji_area = document.createElement('div');
   let toolbar_container = document.querySelector('.ql-toolbar');
   /* Kami: edit start */
