@@ -29,7 +29,8 @@ class EmojiBlot extends Embed {
     let emojiSpan = document.createElement('span');
     emojiSpan.classList.add(this.emojiClass);
     emojiSpan.classList.add(this.emojiPrefix + value.name);
-    emojiSpan.innerText = String.fromCodePoint('0x' + value.unicode);
+    let unicode = value.unicode.indexOf("-") == -1 ? value.unicode : value.unicode.split("-")[0];
+    emojiSpan.innerText = String.fromCodePoint('0x' + unicode);
     node.appendChild(emojiSpan);
   }
 }
