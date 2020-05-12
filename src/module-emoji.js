@@ -236,8 +236,18 @@ class ShortNameEmoji extends Module {
     this.quill.off('text-change', this.onTextChange);
     if (value) {
       this.quill.deleteText(this.atIndex, this.query.length + 1 + trailingDelete, Quill.sources.USER);
+
+      let formats = this.quill.getFormat();
       this.quill.insertEmbed(this.atIndex, 'emoji', value);
-      setTimeout(() => this.quill.setSelection(this.atIndex + 1), 0);
+      setTimeout(() => {
+        this.quill.setSelection(this.atIndex + 1);
+        for (var key in formats) {
+          if (Object.prototype.hasOwnProperty.call(formats, key)) {
+            this.quill.format(key, formats[key]);
+          }
+        }
+        this.quill.emitter.emit(Quill.events.EOF_FORMAT_CHANGE, null, null, Quill.sources.API);
+      }, 0);
     }
     this.quill.focus();
     this.open = false;

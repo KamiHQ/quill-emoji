@@ -156,8 +156,18 @@ function fn_emojiElementsToPanel(type,panel,quill){
                 // quill.insertText(range.index, customButton.innerHTML);
                 // quill.setSelection(range.index + customButton.innerHTML.length, 0);
                 // range.index = range.index + customButton.innerHTML.length;
+                let formats = quill.getFormat();
                 quill.insertEmbed(range.index, 'emoji', emoji);
-                setTimeout(() => quill.setSelection(range.index + 1), 0);
+                setTimeout(() => {
+                  quill.setSelection(range.index + 1);
+                  for (var key in formats) {
+                    if (Object.prototype.hasOwnProperty.call(formats, key)) {
+                      quill.format(key, formats[key]);
+                    }
+                  }
+                  quill.emitter.emit(Quill.events.EOF_FORMAT_CHANGE, null, null, Quill.sources.API);
+                }, 0);
+
                 fn_close();
             });
         }
